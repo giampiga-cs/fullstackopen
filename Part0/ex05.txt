@@ -1,0 +1,18 @@
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: HTML Code
+
+browser->server: HTTP GEThttps://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: spa.js
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+server-->browser: data.json
+note over browser:
+code to fetch data.json is executed from spa.js
+end note
+
+note over browser:
+data is then rendered by browser
+end note
