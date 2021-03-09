@@ -1,4 +1,4 @@
-//unicafe step 4, 1.9
+//unicafe step 5, 1.10
 
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
@@ -9,20 +9,18 @@ const Button = (props) => (
   </button>
 )
 
-// Did with Statistic component and HTML
+// Same
 const Statistic = (props) => {
-  if (props.good + props.neutral + props.bad === 0)
+  if (props.value === 0)
     return ( <p>No feedback given.</p> )
   else
     return (
-      <div>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.good + props.neutral + props.bad}</p>
-        <p>average {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
-        <p>positive {props.good / (props.good + props.neutral + props.bad) * 100}%</p>
-      </div>
+      <>
+        <tr>
+         <td>{props.text}</td>
+         <td>{props.value}</td>
+        </tr>
+      </>
     )
 }
 
@@ -41,7 +39,12 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text="neutral" />
       <Button handleClick={() => setBad(bad + 1)} text="bad" />
       <h1>statistics</h1>
-      <Statistic good={good} neutral={neutral} bad={bad} />
+      <Statistic text="good" value={good} />
+      <Statistic text="neutral" value={neutral} />
+      <Statistic text="bad" value={bad} />
+      <Statistic text="all" value={good + neutral + bad} />
+      <Statistic text="average" value={(good - bad) / (good + neutral + bad)} />
+      <Statistic text="positive" value={good / (good + neutral + bad)} /> <>%</>
     </div>
   )
 }
