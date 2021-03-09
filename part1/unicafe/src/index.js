@@ -1,4 +1,4 @@
-//unicafe step 3, 1.8
+//unicafe step 4, 1.9
 
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
@@ -11,16 +11,19 @@ const Button = (props) => (
 
 // Did with Statistic component and HTML
 const Statistic = (props) => {
-  return (
-    <div>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>all {props.good + props.neutral + props.bad}</p>
-      <p>average {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
-      <p>positive {props.good / (props.good + props.neutral + props.bad) * 100}%</p>
-    </div>
-  )
+  if (props.good + props.neutral + props.bad === 0)
+    return ( <p>No feedback given.</p> )
+  else
+    return (
+      <div>
+        <p>good {props.good}</p>
+        <p>neutral {props.neutral}</p>
+        <p>bad {props.bad}</p>
+        <p>all {props.good + props.neutral + props.bad}</p>
+        <p>average {(props.good - props.bad) / (props.good + props.neutral + props.bad)}</p>
+        <p>positive {props.good / (props.good + props.neutral + props.bad) * 100}%</p>
+      </div>
+    )
 }
 
 const App = () => {
