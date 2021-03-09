@@ -7,13 +7,25 @@ function getRandomInt(max) {
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const votes = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+  // could also use 
+  /*
+  var ary = new Uint8Array(5)
+  */
+
+  const incrementVote = (selected) => {
+    votes[selected]++
+  }
 
   return (
     <div>
       {props.anecdotes[selected]}
       <br></br>
+      <button onClick={() => incrementVote(selected)}>
+        vote
+      </button> 
       <button onClick={() => setSelected(getRandomInt(6))}>
-      next anecdote
+        next anecdote
       </button>
     </div>
   )
