@@ -1,32 +1,49 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max))
-}
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  const votes = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+  const [votes, setVote] = useState([0, 0, 0, 0, 0, 0])
+  const [key, setKey] = useState(0)
+  
+  function getRandomInt(max) {
+    const random = Math.floor(Math.random() * Math.floor(max))
+    setKey(random)
+    return random;
+  }
+
   // could also use 
   /*
   var ary = new Uint8Array(5)
   */
 
-  const incrementVote = (selected) => {
-    votes[selected]++
+  const incrementVote = () => {
+    
+    const copy = [...votes]
+    copy[selected] += 1
+    setVote(copy)
   }
-
+  
   return (
     <div>
+      <h1>
+        Anecdote of the Day
+      </h1>
       {props.anecdotes[selected]}
       <br></br>
-      <button onClick={() => incrementVote(selected)}>
+      has {votes[key]} votes <br />
+      <button onClick={() => incrementVote()}>
         vote
       </button> 
-      <button onClick={() => setSelected(getRandomInt(6))}>
+      <button onClick={() => setSelected(getRandomInt(anecdotes.length))}>
         next anecdote
       </button>
+      <h1>
+        Anecdote with most votes
+      </h1>
+      {props.anecdotes[Object.keys(votes).reduce((a, b) => votes[a] > votes[b] ? a : b)]}
+      
     </div>
   )
 }
